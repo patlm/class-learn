@@ -1,0 +1,14 @@
+{
+  "name": "classlearn",
+  "version": "1.0.0",
+  "description": "Open Source Learning Management System",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Murphy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
