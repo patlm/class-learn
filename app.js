@@ -7,9 +7,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 
 //Route vars
+var main = require('./controllers/main.js');
 var login = require('./controllers/login.js');
 
 //Routes use
+app.use('/', main);
 app.use('/login', login);
 
 //Starting server
