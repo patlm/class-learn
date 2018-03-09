@@ -1,0 +1,106 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+#navBarToggleButton {
+  font-size:100%;
+  cursor:pointer;
+  padding: 10px;
+}
+
+.topNavBar {
+  background-color: #80f442;
+  margin: 0;
+  padding: 5px;
+}
+
+.topNavBar p {
+  padding: 10px;
+  display: inline;
+  font-size: 100%;
+}
+
+.content {
+  padding: 0px 15px 15px 15px;
+  font-size: 75%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /* background-color: #111; */
+    background-color: #d1fffe;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    opacity: 0.985;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 100%;
+    color: #818181;
+    display: block;
+    transition: 0.1s;
+    opacity: 1;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 100%;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 120%;}
+}
+
+@media (min-width: 600px) {
+  body {
+      font-family: "Lato", sans-serif;
+      font-size: 1rem;
+  }
+
+  #navBarToggleButton {
+    font-size:200%;
+  }
+
+  .topNavBar p {
+    font-size: 150%;
+  }
+
+  .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 140%;
+      color: #818181;
+      display: block;
+      transition: 0.1s;
+  }
+
+  .sidenav a:hover {
+      color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 200%;
+      margin-left: 50px;
+  }
+}
