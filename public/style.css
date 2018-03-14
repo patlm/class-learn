@@ -71,7 +71,7 @@ body {
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    right: 25px;
+    right: 10px;
     font-size: 100%;
     margin-left: 50px;
     border: none;
@@ -111,10 +111,7 @@ body {
   }
 
   .sidenav .closebtn {
-      position: absolute;
-      top: 0;
-      right: 25px;
+      right: 0px;
       font-size: 200%;
-      margin-left: 50px;
   }
 }
