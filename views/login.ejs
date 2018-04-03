@@ -3,12 +3,51 @@
   <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <meta name="viewport" content="width=device-width"></meta>
     <link rel="stylesheet" href="style.css">
   </head>
+  <style media="screen">
+    .topNavBar {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .topNavBar p {
+      display: inline-block;
+      margin-top: -5px;
+    }
+
+    @media (min-width: 600px) {
+      .topNavBar p {
+        display: inline-block;
+        margin-top: 3px;
+        font-size: 180%;
+      }
+    }
+  </style>
   <body>
-    <h1>Login</h1>
-    <p>
-      Login into your account here
-    </p>
-  </body>
+    <div class="topNavBar">
+      <p>Class-Learn</p>
+    </div>
+    <div class="content">
+      <h2>Login</h2>
+      <p>Login Below</p>
+
+      <div class="loginForm">
+        <form method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfTocken %>">
+          Email: <input type="text" name="email"><br>
+          Password: <input type="password" name="password"><br>
+          <input type="submit" value="Login">
+        </form>
+      </div>
+
+      <p>
+        <% if (error) { %>
+          <p>Error Message: <%= error %></p>
+          <% }; %>
+        </p>
+      </div>
+      <script src="scripts/header.js"></script>
+    </body>
 </html>

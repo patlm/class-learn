@@ -14,6 +14,7 @@ body {
   background-color: #80f442;
   margin: 0;
   padding: 5px;
+  height: 36px;
 }
 
 .topNavBar p {
@@ -88,8 +89,17 @@ body {
       font-size: 1rem;
   }
 
+  .content {
+    width: 800px;
+    margin: auto;
+  }
+
   #navBarToggleButton {
     font-size:200%;
+  }
+
+  .topNavBar {
+    height: 48px;
   }
 
   .topNavBar p {
@@ -101,7 +111,7 @@ body {
   }
 
   .sidenav a:hover {
-      color: #f1f1f1;
+      color: #4c4b4b;
   }
 
   .sidenav #cousesLink {

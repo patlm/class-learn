@@ -1,0 +1,19 @@
+<div class="topNavBar">
+  <span id="navBarToggleButton" onclick="openNav()">&#9776;</span>
+  <p>Class-Learn</p>
+</div>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/courses" id="cousesLink">Courses</a>
+  <a href="/" id="home">Home</a>
+  <a href="/login" id="login">Login</a>
+  <a href="#">Clients</a>
+  <a href="/logout">logout</a>
+</div>
+
+<script type="text/javascript">
+  var page = '<%= page %>'
+  if (page != '') {
+    document.getElementById(page).classList.add("active");
+  }
+</script>
