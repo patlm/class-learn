@@ -119,13 +119,13 @@ router.get('/login', function(req, res) {
 router.post('/login', function(req, res) {
   User.findOne({$or: [{username: req.body.email}, {email: req.body.email}]}, function(err, user) {
     if (!user) {
-      res.render('login.ejs', {error: "Account Doesn't exist", csrfTocken: req.csrfToken(), page: "login"})
+      res.render('login.ejs', {error: "Sorry, account doesn't exist.  You may have incorrect username or email.", csrfTocken: req.csrfToken(), page: "login"})
     } else {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         req.session.user = user;
         res.redirect('/');
       } else {
-        res.render('login.ejs', {error: "Wrong passowrd", csrfTocken: req.csrfToken(), page: "login"})
+        res.render('login.ejs', {error: "Sorry, incorrect password.", csrfTocken: req.csrfToken(), page: "login"})
       }
     }
   });

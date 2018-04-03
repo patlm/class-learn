@@ -78,6 +78,44 @@ body {
     border: none;
 }
 
+
+/* Login Form Style */
+#loginHeader {
+  font-size: 150%;
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 200;
+}
+
+.loginForm input[type=text], select, .loginForm input[type=password] {
+    width: 100%;
+    font-size: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.loginForm input[type=submit] {
+    width: 100%;
+    font-size: 120%;
+    background-color: #80f442;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#loginErrorMessage {
+  padding: 5px 8px;
+  background-color: #e85c5a;
+  border-radius: 4px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 120%;}
@@ -123,5 +161,29 @@ body {
   .sidenav .closebtn {
       right: 0px;
       font-size: 200%;
+  }
+
+  /* Login Form Style */
+  #loginHeader {
+    font-size: 215%;
+  }
+
+  .loginForm {
+    text-align: center;
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .loginForm input[type=text], select, .loginForm input[type=password] {
+      font-size: 110%;
+  }
+
+  .loginForm input[type=submit] {
+      font-size: 125%;
+  }
+
+  #loginErrorMessage {
+    font-size: 120%;
   }
 }

@@ -30,24 +30,25 @@
       <p>Class-Learn</p>
     </div>
     <div class="content">
-      <h2>Login</h2>
-      <p>Login Below</p>
+      <h2 id="loginHeader">Login</h2>
 
       <div class="loginForm">
+
+        <div class="errorMessageContainer">
+          <% if (error) { %>
+            <p id="loginErrorMessage"><%= error %></p>
+          <% }; %>
+        </div>
+
         <form method="post">
           <input type="hidden" name="_csrf" value="<%= csrfTocken %>">
-          Email: <input type="text" name="email"><br>
-          Password: <input type="password" name="password"><br>
+          <input type="text" name="email" placeholder="Username or Email"><br>
+          <input type="password" name="password" placeholder="Password"><br>
           <input type="submit" value="Login">
         </form>
       </div>
 
-      <p>
-        <% if (error) { %>
-          <p>Error Message: <%= error %></p>
-          <% }; %>
-        </p>
-      </div>
-      <script src="scripts/header.js"></script>
-    </body>
+    </div>
+    <script src="scripts/header.js"></script>
+  </body>
 </html>
