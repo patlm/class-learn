@@ -4,6 +4,8 @@ var bcrypt = require('bcryptjs');
 var router = express.Router();
 var app = express();
 
+var auth = require('./auth.js');
+
 //MongoDB Database setup ------------------------------------------------------
 mongoose.connect(process.env.MONGO_URI);
 
@@ -46,17 +48,6 @@ app.use(function(req, res, next) {
     }
   });
 
-function requireLogin(req, res, next) {
-    if (!req.session.user) {
-      res.redirect('/login');
-    } else {
-      next();
-    }
-}
-
-//Bycrpt
-
-
 //Create admin account if doesn't exist
 User.findOne({username: process.env.ADMIN_USERNAME}, function(err, user) {
   if(err) {
@@ -79,7 +70,7 @@ User.findOne({username: process.env.ADMIN_USERNAME}, function(err, user) {
       lastname: "",
       email: 'N/A',
       password: hash,
-      type: 'admin'
+      usertype: 'admin'
     });
 
     newAdmin.save(function(err) {
@@ -94,15 +85,15 @@ User.findOne({username: process.env.ADMIN_USERNAME}, function(err, user) {
   }
 });
 
-//Routers ---------------------------------------------------------------------
-router.get('/', requireLogin, function(req, res) {
+// Student Routers ------------------------------------------------------------
+router.get('/', auth.requireLogin, function(req, res) {
   res.render('index.ejs', {
     page: "home",
     user: req.session.user
   });
 });
 
-router.get('/courses', function(req, res) {
+router.get('/courses', auth.requireStudentLogin, function(req, res) {
   res.render('courselist.ejs', {
     page: ""
   });
@@ -116,16 +107,25 @@ router.get('/login', function(req, res) {
   });
 });
 
+// Global Routers -------------------------------------------------------------
 router.post('/login', function(req, res) {
   User.findOne({$or: [{username: req.body.email}, {email: req.body.email}]}, function(err, user) {
     if (!user) {
-      res.render('login.ejs', {error: "Sorry, account doesn't exist.  You may have incorrect username or email.", csrfTocken: req.csrfToken(), page: "login"})
+      res.render('login.ejs', {
+        error: "Sorry, account doesn't exist.  You may have incorrect username or email.",
+        csrfTocken: req.csrfToken(),
+        page: "login"
+      });
     } else {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         req.session.user = user;
-        res.redirect('/');
+        res.redirect(auth.correctRedirect(user));
       } else {
-        res.render('login.ejs', {error: "Sorry, incorrect password.", csrfTocken: req.csrfToken(), page: "login"})
+        res.render('login.ejs', {
+          error: "Sorry, incorrect password.",
+          csrfTocken: req.csrfToken(),
+          page: "login"
+        })
       }
     }
   });
@@ -134,6 +134,6 @@ router.post('/login', function(req, res) {
 router.get('/logout', function(req, res) {
     req.session.reset();
     res.redirect('/login')
-  })
+});
 
 module.exports = router;

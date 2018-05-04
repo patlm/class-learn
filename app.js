@@ -27,11 +27,11 @@ app.use(csrf());
 
 //Route vars
 var main = require('./controllers/main.js');
-var login = require('./controllers/login.js');
+var admin = require('./controllers/admin.js');
 
 //Routes use
 app.use('/', main);
-//app.use('/login', login);
+app.use('/admin', admin);
 
 //Starting server
 app.listen(process.env.PORT, function() {
