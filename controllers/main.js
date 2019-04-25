@@ -7,7 +7,7 @@ var app = express();
 var auth = require('./auth.js');
 
 //MongoDB Database setup ------------------------------------------------------
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
 var Schema = mongoose.Schema
 var ObjectId = Schema.ObjectId
