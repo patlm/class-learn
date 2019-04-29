@@ -4,6 +4,7 @@ var csrf = require('csurf');
 var bodyParser = require('body-parser');
 var sessions = require('client-sessions');
 
+var MainRouter = require('./src/classes/MainRouter');
 
 //Fire up express and basic setup
 var app = express();
@@ -25,13 +26,7 @@ app.use(express.static('./public'));
 app.use(urlencodedParser);
 app.use(csrf());
 
-//Route vars
-var main = require('./controllers/main.js');
-var admin = require('./controllers/admin.js');
-
-//Routes use
-app.use('/', main);
-app.use('/admin', admin);
+new MainRouter(app);
 
 //Starting server
 app.listen(process.env.PORT, function() {
