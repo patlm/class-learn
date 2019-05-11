@@ -9,8 +9,10 @@ var MainRouter = require('./src/classes/MainRouter');
 //Fire up express and basic setup
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({extended: true});
+app.set('view engine', 'ejs');
+app.use(express.static('./public'));
 
-//Bycrypt Security Options
+//Sessions settings middleware
 app.use(sessions({
     cookieName: 'session',
     secret: 'asd68kldsalkweioqeiode3kds86sdfnsd',
@@ -21,9 +23,8 @@ app.use(sessions({
     ephemeral: true
 }));
 
-app.set('view engine', 'ejs');
-app.use(express.static('./public'));
 app.use(urlencodedParser);
+
 app.use(csrf());
 
 new MainRouter(app);

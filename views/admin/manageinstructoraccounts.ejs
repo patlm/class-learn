@@ -10,7 +10,125 @@
     <%- include('temps/header.ejs') %>
     <div class="content" onclick="closeNav()">
       <h2>Manage Instructor Accounts</h2>
+
+      <div>
+        <form id="inputForm" onsubmit="return validateForm()" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfTocken %>">
+
+          <div id="userNameAndPassword">
+            <!-- Generate in current username and password fields -->
+          </div>
+
+          <br>
+
+          <input type="submit" value="Save">
+        </form>
+      </div>
     </div>
+
     <script src="../scripts/header.js"></script>
+
+    <script>
+
+      // Load in current forms
+      // Set to disabled initially and then enabed
+
+      // Validate form
+      function validateForm() {
+        const NUM_OF_FORM_FIELDS_PER_LINE = 5;
+
+        let inputElements = document.getElementById('userNameAndPassword').getElementsByTagName('input');
+
+        if (inputElements.length > NUM_OF_FORM_FIELDS_PER_LINE) {
+          for (let i = 0; i < inputElements.length - NUM_OF_FORM_FIELDS_PER_LINE; i++) {
+            if (!inputElements[i].value) {
+              return false;
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      }
+
+
+      function addInputFieldsForUser() {
+        let userNameAndPassword = document.getElementById('userNameAndPassword');
+
+        // First name
+        let newFirstName = document.createElement('input');
+        newFirstName.setAttribute('type', 'text');
+        newFirstName.setAttribute('name', 'firstName');
+        newFirstName.setAttribute('placeholder', 'First Name');
+
+        // Last name
+        let newLastName = document.createElement('input');
+        newLastName.setAttribute('type', 'text');
+        newLastName.setAttribute('name', 'lastName');
+        newLastName.setAttribute('placeholder', 'Last Name');
+
+        // Email
+        let newEmail = document.createElement('input');
+        newEmail.setAttribute('type', 'email');
+        newEmail.setAttribute('name', 'email');
+        newEmail.setAttribute('placeholder', 'Email');
+
+        // Username
+        let newUsername = document.createElement('input');
+        newUsername.setAttribute('type', 'text');
+        newUsername.setAttribute('name', 'username');
+        newUsername.setAttribute('placeholder', 'Username');
+        newUsername.setAttribute('autocorrect', 'off');
+        newUsername.setAttribute('autocapitalize', 'none');
+
+        // Password
+        let newPassword = document.createElement('input');
+        newPassword.setAttribute('type', 'password');
+        newPassword.setAttribute('name', 'password');
+        newPassword.setAttribute('placeholder', 'Password');
+
+        // Add to div
+        userNameAndPassword.appendChild(newFirstName);
+        userNameAndPassword.appendChild(newLastName);
+        userNameAndPassword.appendChild(newEmail)
+        userNameAndPassword.appendChild(newUsername);
+        userNameAndPassword.appendChild(newPassword);
+      }
+
+      // Add initial input fields
+      addInputFieldsForUser();
+
+      // Gets the input forms and then gets last pastword field
+      let inputFormInputs = document.getElementsByTagName('input');
+      let passwordField = inputFormInputs[inputFormInputs.length - 2];
+
+      // Controls whether to add user line
+      function processAddUserLine(evt) {
+        if (this.value !== '') {
+          console.log(this.value);
+          addUserLine();
+        } else {
+          console.log('else');
+        }
+      }
+
+      // Add event listener on second to last input field
+      passwordField.addEventListener('input', processAddUserLine)
+
+      function addUserLine() {
+        console.log('Typed');
+
+        passwordField.removeEventListener('input', processAddUserLine);
+
+        addInputFieldsForUser();
+
+        inputFormInputs = document.getElementsByTagName('input');
+        passwordField = inputFormInputs[inputFormInputs.length - 2];
+
+        passwordField.addEventListener('input', processAddUserLine);
+      }
+
+    </script>
   </body>
 </html>

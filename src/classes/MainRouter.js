@@ -93,10 +93,10 @@ class MainRouter {
   setMiddleWare(app) {
     app.use(function(req, res, next) {
         if (req.session && req.session.user) {
-          User.findOne({id: req.session.user.id}, function (err, user) {
+          User.findOne({id: req.session.user._id}, function (err, user) {
             if (user) {
-              req.user = user;
-              delete req.user.password;
+              req.session.user = user;
+              delete req.session.user.password;
               req.session.user = req.user;
               res.locals.user = req.user;
             }

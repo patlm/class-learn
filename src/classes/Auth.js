@@ -20,6 +20,7 @@ Auth.getUserPathFromPermissions = function(user) {
   if (user.usertype === 'student') {
     return '/';
   } else if (user.usertype === 'instructor') {
+    return '/';
     console.log('Redirect to teacher');
   } else if (user.usertype === 'admin') {
     return '/admin';
