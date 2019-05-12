@@ -26,7 +26,7 @@ class MainRouter {
 
     new StudentRouter(app);
 
-    let adminRouter = new AdminRouter(app);
+    let adminRouter = new AdminRouter();
     app.use('/admin', adminRouter.getRouter());
   }
 
