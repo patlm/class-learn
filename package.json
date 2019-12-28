@@ -13,8 +13,8 @@
     "client-sessions": "^0.8.0",
     "csurf": "^1.10.0",
     "dotenv": "^5.0.0",
-    "ejs": "^2.5.7",
-    "express": "^4.16.4",
-    "mongoose": "^5.5.4"
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.3"
   }
 }
